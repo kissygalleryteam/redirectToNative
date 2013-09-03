@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>redirectToNative的demo</title>
+    <script src="http://g.tbcdn.cn/kissy/k/1.3.0/seed.js" charset="utf-8"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+</head>
+<body>
+
+<h2>redirectToNative跳转到native app的demo:</h2>
+
+    <a id="J_DownloadApp" class="recommend-icon" href="http://www.etao.com/go/act/etao/android.php?spm=1002.1.0.0.dSUImz" data-ios-native-url="etao://home?src=home" data-android-native-url="etao://home?src=home" data-ios-install-url="https://itunes.apple.com/cn/app/yi-tao-xiang-gou-wu-xian-yi-tao/id451400917?mt=8" width="320px" data-android-install-url="http://download.taobaocdn.com/freedom/20457/andriod/701234etaoandroid2.4.9.apk"><img src="http://gtms01.alicdn.com/tps/i1/T1OsB9FfVXXXXs.9gr-640-156.jpg"/></a>
+
+
+</footer>
+
+<script>
+    var S = KISSY;
+    if (S.Config.debug) {
+        var srcPath = "../../../";
+        S.config({
+            packages:[
+                {
+                    name:"gallery",
+                    path:srcPath,
+                    charset:"utf-8",
+                    ignorePackageNameInUri:true
+                }
+            ]
+        });
+    }
+
+    var searchStr = location.search,
+    nativeUrl = 'etao://home' + searchStr;
+
+    S.use('gallery/redirectToNative/1.1/index', function (S, RedirectToNative) {
+        new RedirectToNative('#J_DownloadApp');
+    });
+</script>
+</body>
+</html>

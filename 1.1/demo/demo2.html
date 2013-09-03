@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>redirectToNative的demo</title>
+    <script src="http://g.tbcdn.cn/kissy/k/1.3.0/seed.js" charset="utf-8"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <link rel="stylesheet" href="http://assets.etao.net/apps/e/etaoh5/130822/base.css"/>
+    <link rel="stylesheet" href="http://assets.etao.net/apps/e/etaoh5/130822/entry.css"/>
+</head>
+<body>
+
+<h2>跳转到native app的demo2:</h2>
+
+
+<section class="user-action clearfix">
+    <a class="my"><span>我的一淘</span></a>
+    <a href="http://www.etao.com" class="sign" id="J_Sign" data-ios-native-url="etao://home?src=home" data-android-native-url="etao://home?src=home" data-ios-install-url="https://itunes.apple.com/cn/app/yi-tao-xiang-gou-wu-xian-yi-tao/id451400917?mt=8" data-android-install-url="http://download.taobaocdn.com/freedom/20457/andriod/701234etaoandroid2.4.9.apk"><span>签到</span></a>
+</section>
+
+<section class="searchbox clearfix">
+    <a id="J_Scan" href="#scan" data-ios-native-url="etao://scan" data-android-native-url="etao://scan?src=scan" data-ios-install-url="https://itunes.apple.com/cn/app/yi-tao-xiang-gou-wu-xian-yi-tao/id451400917?mt=8" data-android-install-url="http://download.taobaocdn.com/freedom/20457/andriod/701234etaoandroid2.4.9.apk"  class="scan" id="J_Scan"><span>扫描</span></a>
+    <form id="J_searchBox">
+        <label class="s-label"></label>
+        <input type="search" placeholder="全网热卖搜索：防晒"/>
+        <input type="submit" value="搜索"/>
+        <input type="reset" value="取消"> 
+    </form>
+</section>
+<style>
+h2 {
+    margin: 10px 0 50px 10px;
+}
+.content {
+    display: -webkit-box;
+    display: box;
+    background: #f5f5f5;
+}
+.scan-code, p.info {
+    -webkit-box-flex: 1;
+    box-flex: 1;
+    color: #333;
+}
+</style>
+<section class="content">
+    <p class="info">扫右边，在mobile上测试该demo;</br>tap签到按钮、扫描按钮、下载app链接</p>
+    <section class="scan-code"><img src="http://gtms04.alicdn.com/tps/i4/T1_VaEFdpcXXX7N_Yg-138-138.png" alt="扫我"/></section>
+</section>
+
+<footer>
+<ul>
+    <li><a target="_blank" href="">精简版</a></li>
+    <li><span>触屏版</span></li>
+    <li><a target="_blank" href="">电脑版</a></li>
+    <li><a id="J_DownloadApp" class="recommend-icon" href="http://www.etao.com/go/act/etao/android.php?spm=1002.1.0.0.dSUImz" data-ios-native-url="etao://home?src=home" data-android-native-url="etao://home?src=home" data-ios-install-url="https://itunes.apple.com/cn/app/yi-tao-xiang-gou-wu-xian-yi-tao/id451400917?mt=8" data-android-install-url="http://download.taobaocdn.com/freedom/20457/andriod/701234etaoandroid2.4.9.apk">下载app</a></li>
+</ul>
+<p>&copy;2013 | 浙 B2-20080204</p>
+</footer>
+
+<script>
+    var S = KISSY;
+    if (S.Config.debug) {
+        var srcPath = "../../../";
+        S.config({
+            packages:[
+                {
+                    name:"gallery",
+                    path:srcPath,
+                    charset:"utf-8",
+                    ignorePackageNameInUri:true
+                }
+            ]
+        });
+    }
+
+    var searchStr = location.search,
+    nativeUrl = 'etao://home' + searchStr;
+
+    S.use('gallery/redirectToNative/1.1/index', function (S, RedirectToNative) {
+        new RedirectToNative('#J_Sign,#J_DownloadApp,#J_Scan');
+    });
+</script>
+</body>
+</html>
