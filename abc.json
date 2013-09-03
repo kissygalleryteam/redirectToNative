@@ -1,0 +1,14 @@
+{
+    "name": "redirectToNative",
+    "version": "1.1",
+    "desc": "",
+    "cover": "",
+    "tag":"1.1",
+    "author": {
+        "name": "miaojing",
+        "email": "zhou2ting@gmail.com",
+        "page": "https://github.com/miaojing"
+    },
+    "type": "kissy-gallery",
+    "type-url": "http://gallery.kissyui.com/guide"
+}
