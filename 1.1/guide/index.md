@@ -3,7 +3,7 @@
 redirectToNative是根据设备类型和native app是否安装打开相应的地址；跳转逻辑为如果native app已经安装则直接打开相应app的相应功能;未安装则根据ios or andriod引导app下载。
 
 * 版本：1.1
-* 作者：miaojing
+* 作者：妙净
 * demo：[http://gallery.kissyui.com/redirectToNative/1.1/demo/index.html](http://gallery.kissyui.com/redirectToNative/1.1/demo/index.html)
 
 ### 使用场景一: H5页面中的推荐下载、h5不支持但native支持的功能引导
