@@ -13,8 +13,8 @@
  **/
 
     var RedirectToNative = {
-    	init: function(cfg) {
-			if(!cfg) return;
+    	init: function(config) {
+			if(!config) return;
             var self = this;
                 self.platform = self._UA();
             // pc下 什么都不处理  
@@ -89,6 +89,7 @@
 var searchStr = location.search,
 	iosNativeUrl = 'etao://item' + searchStr,
     andriodNativeUrl = 'etao://item' + searchStr;
+
 RedirectToNative.init({
 	iosInstallUrl: 'https://itunes.apple.com/cn/app/yi-tao-xiang-gou-wu-xian-yi-tao/id451400917?mt=8',
 	androidInstallUrl: 'http://download.taobaocdn.com/freedom/20457/andriod/701234etaoandroid2.4.9.apk',

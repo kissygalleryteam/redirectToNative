@@ -26,10 +26,16 @@ redirectToNative是根据设备类型和native app是否安装打开相应的地
          var redirectToNative = new RedirectToNative('#J_DownloadApp');
     });
 
+也支持多个一起初始化，和KISSY Event的选择器一样,如[demo2](http://gallery.kissyui.com/redirectToNative/1.1/demo/index.html)
+
+         var redirectToNative = new RedirectToNative('#J_DownloadApp, #J_Sign, #J_Scan');
+
 ## 使用场景二：
 ###推广native app功能的手机短信链接、二维码链接的中间跳转页面
 
 作为独立中间跳转页面，在求少求快的mobile端，也许你会嫌弃还要引入kissy seed和组件代码；所以提供一个[原生js版本](../demo/demo3.html)，使用时找个[在线工具](http://ganquan.info/yui/?hl=zh-CN)压缩下（压缩后1.2K）更佳哈。注：@小二 直接copy script节点到tms区块里面可以直接线上使用，如[tms示例页面]( http://www.taobao.com/go/rgn/redirectonative/test.php)）
+
+
 
 
 
