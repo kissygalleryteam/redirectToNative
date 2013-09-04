@@ -6,7 +6,7 @@ gallery/redirectToNative/1.1/index
 */
 /**
  * @fileoverview 
- * @author miaojing<miaojing@taobao.com>
+ * @author miaojing <miaojing@taobao.com>
  * @module redirectToNative 移动页面或中间跳转页面使用 尽量不依赖任何kissy模块
  **/
 KISSY.add('gallery/redirectToNative/1.1/index',function (S, Event) {
@@ -29,13 +29,14 @@ KISSY.add('gallery/redirectToNative/1.1/index',function (S, Event) {
             // kissy1.3 click在mobile下对应tap
             Event.on(self.el, 'click', function(e) {
                 e.preventDefault();
-                var tar = e.target,
-                    iosInstallUrl = tar.getAttribute('data-ios-install-url'),
-                    androidInstallUrl = tar.getAttribute('data-android-install-url'),
-                    iosNativeUrl = tar.getAttribute('data-ios-native-url'),
-                    andriodNativeUrl = tar.getAttribute('data-android-native-url');
-                self.installUrl = self.platform == 'ios' ? iosInstallUrl : androidInstallUrl;
-                self.nativeUrl = self.platform == 'ios' ? iosNativeUrl : andriodNativeUrl;
+                var tar = e.currentTarget;
+                if (self.platform == 'ios') {
+                    self.installUrl = tar.getAttribute('data-ios-install-url');
+                    self.nativeUrl = tar.getAttribute('data-ios-native-url'); 
+                } else {
+                    self.installUrl = tar.getAttribute('data-android-install-url');
+                    self.nativeUrl = tar.getAttribute('data-android-native-url');
+                }
                 self._gotoNative();
             });
         },
@@ -100,7 +101,9 @@ KISSY.add('gallery/redirectToNative/1.1/index',function (S, Event) {
 
     });
     return RedirectToNative;
-},{requires:['event']});
+},{
+    requires:['event']
+});
 
 
 
