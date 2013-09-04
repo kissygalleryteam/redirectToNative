@@ -9,21 +9,16 @@
 /**
  * @fileoverview 
  * @author miaojing<miaojing@taobao.com>
- * @module redirectToNative 移动页面或中间跳转页面使用 不依赖任何kissy模块
+ * @module redirectToNative 移动页面或中间跳转页面使用 原生实现，不依赖任何kissy模块
  **/
 
     var RedirectToNative = {
     	init: function(cfg) {
+    		if(!cfg) return;
             var self = this;
                 self.platform = self._UA();
             // pc下 什么都不处理  
             if(!self.platform) return;
-            var config = cfg || {
-                    iosInstallUrl: '',
-                    androidInstallUrl: '',
-                    iosNativeUrl: '',
-                    andriodNativeUrl: ''
-                };
             self.installUrl = self.platform == 'ios' ? config.iosInstallUrl : config.androidInstallUrl;
             self.nativeUrl = self.platform == 'ios' ? config.iosNativeUrl : config.andriodNativeUrl;
             self._gotoNative();

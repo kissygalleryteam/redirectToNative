@@ -25,8 +25,7 @@ redirectToNative是根据设备类型和native app是否安装打开相应的地
     });
 
 ### 使用场景二：推广native app功能的手机短信链接、二维码链接的中间跳转页面
-作为独立中间跳转页面，在求少求快的mobile端，也许你会嫌弃还要引入kissy seed和组件代码；所以提供一个原生js版本（@小二 直接copy到tms区块里面可以直接线上使用，如[tms页面]( http://www.taobao.com/go/rgn/redirectonative/test.php)），使用时[在线压缩工具](http://ganquan.info/yui/?hl=zh-CN)压缩下更佳哈。
-
+作为独立中间跳转页面，在求少求快的mobile端，也许你会嫌弃还要引入kissy seed和组件代码；所以提供一个原生js版本，使用时[在线压缩工具](http://ganquan.info/yui/?hl=zh-CN)压缩下更佳哈。注：@小二 直接copy代码到tms区块里面可以直接线上使用，如[tms示例页面]( http://www.taobao.com/go/rgn/redirectonative/test.php)）
 
 <textarea value="<script>
 /**
@@ -115,7 +114,7 @@ redirectToNative是根据设备类型和native app是否安装打开相应的地
 var searchStr = location.search,
 	iosNativeUrl = 'etao://item' + searchStr,
     andriodNativeUrl = 'etao://item' + searchStr;
-// 根据实际需求，配置下这四个参数即可
+// 根据实际需求，配置下这四个参数即可，当然上面的逻辑您也可以大改特改:),正式使用时还是压缩下哈 
 RedirectToNative.init({
 	iosInstallUrl: 'https://itunes.apple.com/cn/app/yi-tao-xiang-gou-wu-xian-yi-tao/id451400917?mt=8',
 	androidInstallUrl: 'http://download.taobaocdn.com/freedom/20457/andriod/701234etaoandroid2.4.9.apk',
