@@ -94,7 +94,9 @@ KISSY.add(function (S, Event) {
 
     });
     return RedirectToNative;
-},{requires:['event']});
+},{
+    requires:['event']
+});
 
 
 
