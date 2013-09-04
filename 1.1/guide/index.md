@@ -9,11 +9,10 @@ redirectToNative是根据设备类型和native app是否安装打开相应的地
 ### 使用场景一: H5页面中的推荐下载、h5不支持但native支持的功能引导
 
 #### 第一步： 加入容器，配置容器节点上的四个自定义属性，即：
-* data-ios-native-url： ios app上注册的协议地址
-* data-android-native-url：android app上注册的协议地址
-* data-ios-install-url：ios app store里的安装地址
-* data-android-install-url： android app的apk地址
-
+1. data-ios-native-url： ios app上注册的协议地址
+2. data-android-native-url：android app上注册的协议地址
+3. data-ios-install-url：ios app store里的安装地址
+4. data-android-install-url： android app的apk地址
 
 
 		<a id="J_DownloadApp" class="recommend-icon" href="http://www.etao.com/go/act/etao/android.php" data-ios-native-url="etao://home?src=home" data-android-native-url="etao://home?src=home" data-ios-install-url="https://itunes.apple.com/cn/app/yi-tao-xiang-gou-wu-xian-yi-tao/id451400917?mt=8" data-android-install-url="http://download.taobaocdn.com/freedom/20457/andriod/701234etaoandroid2.4.9.apk">下载app</a>
