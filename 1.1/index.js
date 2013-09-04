@@ -1,7 +1,7 @@
 /**
  * @fileoverview 
  * @author miaojing <miaojing@taobao.com>
- * @module redirectToNative 移动页面或中间跳转页面使用 尽量不依赖任何kissy模块
+ * @module redirectToNative 移动页面或中间跳转页面使用 不依赖任何kissy模块 这里只依赖Event
  **/
 KISSY.add(function (S, Event) {
     /**
