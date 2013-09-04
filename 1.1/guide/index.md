@@ -14,7 +14,9 @@ redirectToNative是根据设备类型和native app是否安装打开相应的地
 * data-ios-install-url：ios app store里的安装地址
 * data-android-install-url： android app的apk地址
 
-	<a id="J_DownloadApp" class="recommend-icon" href="http://www.etao.com/go/act/etao/android.php?spm=1002.1.0.0.dSUImz" data-ios-native-url="etao://home?src=home" data-android-native-url="etao://home?src=home" data-ios-install-url="https://itunes.apple.com/cn/app/yi-tao-xiang-gou-wu-xian-yi-tao/id451400917?mt=8" data-android-install-url="http://download.taobaocdn.com/freedom/20457/andriod/701234etaoandroid2.4.9.apk">下载app</a>
+
+<a id="J_DownloadApp" class="recommend-icon" href="http://www.etao.com/go/act/etao/android.php?spm=1002.1.0.0.dSUImz" data-ios-native-url="etao://home?src=home" data-android-native-url="etao://home?src=home" data-ios-install-url="https://itunes.apple.com/cn/app/yi-tao-xiang-gou-wu-xian-yi-tao/id451400917?mt=8" data-android-install-url="http://download.taobaocdn.com/freedom/20457/andriod/701234etaoandroid2.4.9.apk">下载app</a>
+
 
 #### 第二步： 初始化组件
 
