@@ -16,7 +16,7 @@ redirectToNative是根据设备类型和native app是否安装打开相应的地
 
 
 
-		<a id="J_DownloadApp" class="recommend-icon" href="http://www.etao.com/go/act/etao/android.php?spm=1002.1.0.0.dSUImz" data-ios-native-url="etao://home?src=home" data-android-native-url="etao://home?src=home" data-ios-install-url="https://itunes.apple.com/cn/app/yi-tao-xiang-gou-wu-xian-yi-tao/id451400917?mt=8" data-android-install-url="http://download.taobaocdn.com/freedom/20457/andriod/701234etaoandroid2.4.9.apk">下载app</a>
+		<a id="J_DownloadApp" class="recommend-icon" href="http://www.etao.com/go/act/etao/android.php" data-ios-native-url="etao://home?src=home" data-android-native-url="etao://home?src=home" data-ios-install-url="https://itunes.apple.com/cn/app/yi-tao-xiang-gou-wu-xian-yi-tao/id451400917?mt=8" data-android-install-url="http://download.taobaocdn.com/freedom/20457/andriod/701234etaoandroid2.4.9.apk">下载app</a>
 
 
 #### 第二步： 初始化组件
@@ -26,7 +26,7 @@ redirectToNative是根据设备类型和native app是否安装打开相应的地
     });
 
 ### 使用场景二：推广native app功能的手机短信链接、二维码链接的中间跳转页面
-作为独立中间跳转页面，在求少求快的mobile端，也许你会嫌弃还要引入kissy seed和组件代码；所以提供一个[原生js版本](././demo3.html)，使用时[在线压缩工具](http://ganquan.info/yui/?hl=zh-CN)压缩下更佳（压缩后1.2K）哈。注：@小二 直接copy script节点到tms区块里面可以直接线上使用，如[tms示例页面]( http://www.taobao.com/go/rgn/redirectonative/test.php)）
+作为独立中间跳转页面，在求少求快的mobile端，也许你会嫌弃还要引入kissy seed和组件代码；所以提供一个[原生js版本](././demo/demo3.html)，使用时[在线压缩工具](http://ganquan.info/yui/?hl=zh-CN)压缩下（压缩后1.2K）更佳哈。注：@小二 直接copy script节点到tms区块里面可以直接线上使用，如[tms示例页面]( http://www.taobao.com/go/rgn/redirectonative/test.php)）
 
 
 
