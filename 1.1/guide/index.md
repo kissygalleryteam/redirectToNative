@@ -40,5 +40,6 @@ redirectToNative是根据设备类型和native app是否安装打开相应的地
 ### 使用场景
 ### native app协议
 ### 实现方式
+### 参考资源
 
 
