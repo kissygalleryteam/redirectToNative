@@ -28,7 +28,7 @@ redirectToNative是根据设备类型和native app是否安装打开相应的地
 
 也支持多个一起初始化，和KISSY Event的选择器一样,如[demo2](http://gallery.kissyui.com/redirectToNative/1.1/demo/index.html)
 
-         var redirectToNative = new RedirectToNative('#J_DownloadApp, #J_Sign, #J_Scan');
+    var redirectToNative = new RedirectToNative('#J_DownloadApp, #J_Sign, #J_Scan');
 
 ## 使用场景二
 ### 推广native app功能的手机短信链接、二维码链接的中间跳转页面
