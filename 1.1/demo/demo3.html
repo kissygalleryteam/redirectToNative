@@ -88,15 +88,17 @@
         }
     };
 
-var iosNativeUrl = 'etao://home',andriodNativeUrl = 'etao://home?src=scanning';
-
+//透传参数
+var searchStr = location.search,
+	iosNativeUrl = 'etao://item' + searchStr,
+    andriodNativeUrl = 'etao://item' + searchStr;
+// 根据实际需求，配置下这四个参数即可
 RedirectToNative.init({
 	iosInstallUrl: 'https://itunes.apple.com/cn/app/yi-tao-xiang-gou-wu-xian-yi-tao/id451400917?mt=8',
 	androidInstallUrl: 'http://download.taobaocdn.com/freedom/20457/andriod/701234etaoandroid2.4.9.apk',
 	iosNativeUrl: iosNativeUrl,
 	andriodNativeUrl: andriodNativeUrl
 });
-
 </script>
 </body>
 </html>
