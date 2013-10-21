@@ -1,9 +1,15 @@
+/*
+combined files : 
+
+gallery/redirectToNative/1.1/index
+
+*/
 /**
  * @fileoverview 
  * @author miaojing <miaojing@taobao.com>
- * @module redirectToNative 移动页面或中间跳转页面使用 不依赖任何kissy模块 这里只依赖Event
+ * @module redirectToNative 移动页面或中间跳转页面使用 尽量不依赖任何kissy模块
  **/
-KISSY.add(function (S, Event) {
+KISSY.add('gallery/redirectToNative/1.1/index',function (S, Event) {
     /**
      * @class RedirectToNative
      * @constructor 
@@ -27,11 +33,9 @@ KISSY.add(function (S, Event) {
                 if (self.platform == 'ios') {
                     self.installUrl = tar.getAttribute('data-ios-install-url');
                     self.nativeUrl = tar.getAttribute('data-ios-native-url'); 
-                    self.laterTime = tar.getAttribute('data-ios-open-time');
                 } else {
                     self.installUrl = tar.getAttribute('data-android-install-url');
                     self.nativeUrl = tar.getAttribute('data-android-native-url');
-                    self.laterTime = tar.getAttribute('data-android-open-time');
                 }
                 self._gotoNative();
             });
@@ -100,6 +104,7 @@ KISSY.add(function (S, Event) {
 },{
     requires:['event']
 });
+
 
 
 

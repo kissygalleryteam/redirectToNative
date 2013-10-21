@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>redirectToNative的demo</title>
+    <script src="http://g.tbcdn.cn/kissy/k/1.3.0/seed.js" charset="utf-8"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+</head>
+<body>
+    <style>
+    table {
+        border: 1px solid #ddd;
+        border-collapse: collapse;
+        border-left: 0;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+    }
+    tbody:first-child tr:first-child>td:first-child {
+        -webkit-border-top-left-radius: 4px;
+        border-top-left-radius: 4px;
+        -moz-border-radius-topleft: 4px;
+    }
+
+    tbody>tr:nth-child(odd)>td,  tbody>tr:nth-child(odd)>th {
+        background-color: #f9f9f9;
+    }
+
+    th,  td {
+        border-left: 1px solid #ddd;
+    }
+
+    table th, table td {
+        padding: 6px 13px;
+        line-height: 20px;
+        text-align: left;
+        vertical-align: top;
+        border-top: 1px solid #ddd;
+    }
+    </style>
+    <h2>redirectToNative跳转到native app的demo:</h2>
+
+<table>
+    <tbody>
+    <tr><th></th><th>demo地址</th><th>扫下在mobile上测试</th></tr>
+    <tr><td>demo1</td><td><a href="demo1.html">常用</a></td><td><img src="http://gtms03.alicdn.com/tps/i3/T1NA5HFlhXXXb8AlYJ-156-155.png"/></td></tr>
+    <tr><td>demo2</td><td><a href="demo2.html">同一页面多处应用</a></td><td><img src="http://gtms04.alicdn.com/tps/i4/T16muHFmJXXXcoPeYv-150-147.png"/></td></tr>
+    <tr><td>demo3</td><td><a href="demo3.html?nid=20068860561">手机短信、二维码等链接中, 打开native某功能的中间跳转页</a></td><td><img src="http://gtms01.alicdn.com/tps/i1/T1SDeGFaVbXXaN_gr6-168-172.png"/></td></tr>
+    </tbody>
+</table>
+</body>
+</html>
