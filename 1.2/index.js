@@ -29,12 +29,12 @@ KISSY.add(function (S, Event) {
                 if (self.platform == 'ios') {
                     self.installUrl = tar.getAttribute('data-ios-install-url');
                     self.nativeUrl = tar.getAttribute('data-ios-native-url'); 
-                    self.laterTime = tar.getAttribute('data-ios-open-time') || 1000;
+                    self.laterTime = tar.getAttribute('data-ios-open-time') || 800;
                 } else {
                     self.installUrl = tar.getAttribute('data-android-install-url');
                     self.nativeUrl = tar.getAttribute('data-android-native-url');
                     self.laterTime = tar.getAttribute('data-android-open-time') || 3000;
-                    self.package = tar.getAttribute('data-package') || 'com.taobao.etao';
+                    self.package = tar.getAttribute('data-package') || 'com.taobao.taobao';
                 }
                 //只有android下的chrome要用intent协议唤起native
                 if (self.platform != 'ios' && !!navigator.userAgent.match(/Chrome/i)) {
@@ -46,7 +46,8 @@ KISSY.add(function (S, Event) {
         },
         /**
          * _hackChrome 只有android下的chrome要用intent协议唤起native
-         * @return {[type]} 
+         * https://developers.google.com/chrome/mobile/docs/intents intent协议通过iframe.src访问无效，但改变href可行
+         * @return  
          */
         _hackChrome: function() {
           var self = this;
@@ -54,6 +55,9 @@ KISSY.add(function (S, Event) {
           var paramUrlarr = self.nativeUrl.split('://'),
               scheme = paramUrlarr[0],
               schemeUrl = paramUrlarr[1];
+              //假设未安装该应用; 如果安装了google应用下载器（google play）的， 会直接根据package name直接到应用商店定位到该应用；幸运的是用intent://不会刷新当前页面。
+              //如果未安装google play则不会根据package name自动寻找下载地址
+              //所以这里依然用超时就去自动下载的逻辑
           window.location = 'intent://' + schemeUrl + '#Intent;scheme=' + scheme + ';package=' + self.package + ';end';
           setTimeout(function() {
               self._gotoDownload(startTime);

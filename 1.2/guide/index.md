@@ -2,7 +2,7 @@
 
 redirectToNative是根据设备类型和native app是否安装打开相应的地址；跳转逻辑为如果native app已经安装则直接打开相应app的相应功能;未安装则根据ios or andriod引导app下载。
 
-* 版本：1.1
+* 版本：1.2
 * 作者：妙净
 * demo：[http://gallery.kissyui.com/redirectToNative/1.1/demo/index.html](http://gallery.kissyui.com/redirectToNative/1.1/demo/index.html)
 

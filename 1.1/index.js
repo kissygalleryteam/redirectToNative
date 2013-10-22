@@ -27,11 +27,11 @@ KISSY.add(function (S, Event) {
                 if (self.platform == 'ios') {
                     self.installUrl = tar.getAttribute('data-ios-install-url');
                     self.nativeUrl = tar.getAttribute('data-ios-native-url'); 
-                    self.laterTime = tar.getAttribute('data-ios-open-time');
+                    self.laterTime = tar.getAttribute('data-ios-open-time') || 800;
                 } else {
                     self.installUrl = tar.getAttribute('data-android-install-url');
                     self.nativeUrl = tar.getAttribute('data-android-native-url');
-                    self.laterTime = tar.getAttribute('data-android-open-time');
+                    self.laterTime = tar.getAttribute('data-android-open-time') || 3000;
                 }
                 self._gotoNative();
             });
