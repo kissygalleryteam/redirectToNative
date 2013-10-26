@@ -8,40 +8,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
   <div style="font-size:16px;color:#333">如果没有自动下载，请手动<a style="color:red;font-size:20px" href="http://m.etao.com/download.php?src=unsupport">点此下载一淘客户端</a>，安装后用一淘客户端的扫描功能重新扫描二维码即可；</br></br>如果您不想安装客户端，也可以<a style="color:red;font-size:20px" id="J_gotoH5" href="http://m.etao.com/#item/">直接访问etao触屏版</a>，同样有手机专享价以及优惠券和返利！</div>
 <script>
-//埋点
-function stat() {
-  var cnaArr = document.cookie.match(/cna=([\w]+)/i);
-  var cna =  cnaArr ? '&cp_cna=' + cnaArr[1] : '';
-  var apData = '&ap_data=' + location.search.replace('?', '').replace('=', ':').replace('&',';');
-  var url = 'http://log.m.taobao.com/js.do?ap_url=' + encodeURIComponent(window.location.href + '&log=page_scan')
-          + apData + cna;
-  var img = document.createElement('img');
-  img.src = url;
-  img.width = '1px';
-  img.height = '1px';
-  document.body.appendChild(img);
-}
-
-//测试发现魅族等不支持etao://item，出降级页面
-function dealLink() {
-  var nidArr = location.search.match(/nid=([\d]+)/);
-  var nid = nidArr ? nidArr[1] : '';
-  document.getElementById('J_gotoH5').href = 'http://m.etao.com/#item/' + nid;
-}
-
-stat();
-dealLink();
 /**
  * @fileoverview 
  * @author miaojing<miaojing@taobao.com>
- * @module redirectToNative 移动页面或中间跳转页面使用 不依赖任何kissy模块
+ * @module redirectToNative 移动页面中间跳转页面使用,打开native app，没安装则引导去下载app,不依赖任何kissy模块
+ * @ps 线上运行数月至今，目前测试发现魅族手机无法识别etao://item 怀疑手机系统不支持，具体原因客户端开发排查目前无果，这种情况可在跳转页面添加文本再次引导用户
  **/
-
+ 
 /**
  * @class RedirectToNative
  * @constructor 
  */
 var RedirectToNative = {
+	/**
+     * iosNativeUrl: string 必选 ios app上注册的协议地址（app scheme） 如 taobao://home(淘宝首页) etao://item?nid=xxx（一淘商品详情页）
+	 * andriodNativeUrl: string 必选 android app上注册的协议地址
+	 * iosInstallUrl: string 必选 ios app store里的安装地址
+	 * androidInstallUrl: string 必选 android app的apk地址
+	 * package: string 可选 默认com.taobao.taobao android的包名，如淘宝为com.taobao.taobao，etao为com.taobao.etao
+	 * iosOpenTime: int 可选默认800ms， 启动ios客户端所需时间，一般ios平台整体性能不错，打开速度较快
+	 * androidOpenTime: int 可选默认2000ms，启动android客户端所需时间，android系统性能参差不齐所需启动时间也不齐，和android客户端本身启动时间也有关，比如3.0版本启动一淘客户端就平均比淘宝客户端要慢200ms
+     */
     init: function(config) {
         var self = this;
             self.platform = self._UA();
@@ -50,11 +37,11 @@ var RedirectToNative = {
         if (self.platform == 'ios') {
           self.installUrl = config.iosInstallUrl;
           self.nativeUrl = config.iosNativeUrl;
-          self.laterTime = config.iosLaterTime || 800;
+          self.openTime = config.iosOpenTime || 800;
         } else {
           self.installUrl = config.androidInstallUrl;
           self.nativeUrl = config.andriodNativeUrl;
-          self.laterTime = config.androidLaterTime || 3000;
+          self.openTime = config.androidOpenTime || 3000;
           self.package = config.package || 'com.taobao.taobao';
         }
         //只有android下的chrome要用intent协议唤起native
@@ -66,6 +53,7 @@ var RedirectToNative = {
     },
     /**
      * _hackChrome 只有android下的chrome要用intent协议唤起native
+	 * https://developers.google.com/chrome/mobile/docs/intents
      * @return {[type]} 
      */
     _hackChrome: function() {
@@ -119,7 +107,7 @@ var RedirectToNative = {
     _gotoDownload: function(startTime) {
         var self = this;
         var endTime = Date.now();
-        if (endTime - startTime < self.laterTime + 500) {
+        if (endTime - startTime < self.openTime + 500) {
             window.location = self.installUrl;
         }
     },
@@ -144,6 +132,7 @@ var searchStr = location.search,
     iosNativeUrl = 'etao://home' + searchStr,
     andriodNativeUrl = 'etao://home' + searchStr,
     downloadUrl = 'http://m.etao.com/download.php' + searchStr,
+	
     configObj = {
       iosInstallUrl: downloadUrl,
       androidInstallUrl: downloadUrl,
@@ -152,119 +141,8 @@ var searchStr = location.search,
       package: 'com.taobao.etao'
   };
 
-//等埋点发送好了再跳转
-setTimeout(function(){
   RedirectToNative.init(configObj);
-}, 50);
-
 </script>
 </body>
 </html>
 
-<!--
-<script>
-
-/**
- * @fileoverview 
- * @author miaojing<miaojing@taobao.com>
- * @module redirectToNative 移动页面或中间跳转页面使用 不依赖任何kissy模块
- **/
-
-    var RedirectToNative = {
-        init: function(cfg) {
-            var self = this;
-                self.platform = self._UA();
-            // pc下 什么都不处理  
-            if (!self.platform) return;
-            var config = cfg || {
-                    iosInstallUrl: '',
-                    androidInstallUrl: '',
-                    iosNativeUrl: '',
-                    andriodNativeUrl: ''
-                };
-            if (self.platform == 'ios') {
-              self.installUrl = config.iosInstallUrl;
-              self.nativeUrl = config.iosNativeUrl;
-              self.laterTime = 800;
-            } else {
-              self.installUrl = config.androidInstallUrl;
-              self.nativeUrl = config.andriodNativeUrl;
-              self.laterTime = 3000;
-            }
-            self._gotoNative();
-        },
-        /**
-         * [_gotoNative 跳转至native，native超时打不开就去下载]
-         * @return 
-         */
-        _gotoNative: function() {
-            var self = this;
-            var startTime = Date.now(),
-                doc = document,
-                body = doc.body,
-                iframe = doc.createElement('iframe');
-                iframe.id = 'J_redirectNativeFrame';
-                iframe.style.display = 'none';
-                iframe.src = self.nativeUrl;
-            //运行在head中
-            if(!body) {
-                setTimeout(function(){
-                    doc.body.appendChild(iframe);
-                }, 0);
-            } else {
-                body.appendChild(iframe);
-            }
-            
-            setTimeout(function() {
-                doc.body.removeChild(iframe);
-                self._gotoInstall(startTime);
-                /**
-                 * 测试时间设置小于800ms时，在android下的UC浏览器会打开native app时并下载apk，
-                 * 测试android+UC下打开native的时间最好大于800ms;
-                 */
-            }, self.laterTime);
-        },
-        /**
-         * [_gotoInstall 去下载]
-         * @param  {[type]} startTime [开始时间]
-         * @return 
-         */
-        _gotoInstall: function(startTime) {
-            var self = this;
-            var endTime = Date.now();
-            if (endTime - startTime < self.laterTime + 500) {
-                window.location = self.installUrl;
-            }
-        },
-        /**
-         * [_UA 检测平台]
-         * @return string [ios|android| ]
-         */
-        _UA: function() {
-            var ua = navigator.userAgent;
-            // ios
-            if (!!ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
-                return 'ios';
-            } else if (!!ua.match(/Android/i)) {
-                return 'android';
-            } else {
-                return '';
-            }
-        }
-    };
-  //透传参数
-var searchStr = location.search,
-    iosNativeUrl = 'etao://item' + searchStr,
-    andriodNativeUrl = 'etao://item' + searchStr,
-    iosInstallUrl = 'http://m.etao.com/download.php' + searchStr,
-    androidInstallUrl = iosInstallUrl;
-
-RedirectToNative.init({
-    iosInstallUrl: iosInstallUrl,
-    androidInstallUrl: androidInstallUrl,
-    iosNativeUrl: iosNativeUrl,
-    andriodNativeUrl: andriodNativeUrl
-});
-
-</script>
--->

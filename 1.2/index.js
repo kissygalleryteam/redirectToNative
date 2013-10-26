@@ -29,11 +29,11 @@ KISSY.add(function (S, Event) {
                 if (self.platform == 'ios') {
                     self.installUrl = tar.getAttribute('data-ios-install-url');
                     self.nativeUrl = tar.getAttribute('data-ios-native-url'); 
-                    self.laterTime = tar.getAttribute('data-ios-open-time') || 800;
+                    self.openTime = tar.getAttribute('data-ios-open-time') || 800;
                 } else {
                     self.installUrl = tar.getAttribute('data-android-install-url');
                     self.nativeUrl = tar.getAttribute('data-android-native-url');
-                    self.laterTime = tar.getAttribute('data-android-open-time') || 3000;
+                    self.openTime = tar.getAttribute('data-android-open-time') || 3000;
                     self.package = tar.getAttribute('data-package') || 'com.taobao.taobao';
                 }
                 //只有android下的chrome要用intent协议唤起native
@@ -61,7 +61,7 @@ KISSY.add(function (S, Event) {
           window.location = 'intent://' + schemeUrl + '#Intent;scheme=' + scheme + ';package=' + self.package + ';end';
           setTimeout(function() {
               self._gotoDownload(startTime);
-          }, self.laterTime);
+          }, self.openTime);
         },
         /**
          * [_gotoNative 跳转至native，native超时打不开就去下载]
@@ -93,7 +93,7 @@ KISSY.add(function (S, Event) {
                  * 测试时间设置小于800ms时，在android下的UC浏览器会打开native app时并下载apk，
                  * 测试android+UC下打开native的时间最好大于800ms;
                  */
-            }, self.laterTime);
+            }, self.openTime);
         },
         /**
          * [_gotoInstall 去下载]
@@ -103,7 +103,7 @@ KISSY.add(function (S, Event) {
         _gotoDownload: function(startTime) {
             var self = this;
             var endTime = Date.now();
-            if (endTime - startTime < self.laterTime + 500) {
+            if (endTime - startTime < self.openTime + 500) {
                 window.location = self.installUrl;
             }
         },
