@@ -1,7 +1,7 @@
 {
     "name": "redirectToNative",
     "version": "1.2",
-    "desc": "打开native，没安装引导去下载",
+    "desc": "打开app,没安装引导去下载",
     "cover": "",
     "tag":"1.2",
     "author": {
