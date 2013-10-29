@@ -11,8 +11,8 @@ redirectToNative是根据设备类型和native app是否安装打开相应的地
 
 #### 第一步： 加入容器，配置容器节点上的四个自定义属性，即：
 <ul>
-<li>data-ios-native-url： 必选 ios app上注册的协议地址（app scheme） 如 taobao://home(淘宝首页) etao://item?nid=xxx（一淘商品详情页） </li>
-<li>data-android-native-url：必选 android app上注册的协议地址</li>
+<li>data-ios-native-url： 必选 ios app上自定义的url scheme 如 taobao://home(淘宝首页) etao://item?nid=xxx（一淘商品详情页） </li>
+<li>data-android-native-url：必选 android app上自定义的url scheme</li>
 <li>data-ios-install-url：必选 ios app store里的安装地址</li>
 <li>data-android-install-url：必选 android app的apk地址</li>   
 <li>data-package：可选 默认com.taobao.taobao android的包名，如淘宝为com.taobao.taobao，etao为com.taobao.etao</li>      
@@ -40,13 +40,13 @@ redirectToNative是根据设备类型和native app是否安装打开相应的地
 
 ## 备注
 ### 实现方式
-通过iframe src发送请求打开app协议，如taobao://home（淘宝首页） 、etao://scan（一淘扫描）)；如果安装了客户端则会直接唤起，直接唤起后，之前浏览器窗口（或者扫码工具的webview）推入后台；如果在指定的时间内客户端没有被唤起，则js重定向到app下载地址。需要注意的是
-如果是android chrome 25版本以后，在iframe src不会发送请求，原因如下 https://developers.google.com/chrome/mobile/docs/intents，通过location href使用intent协议拉起客户端可行并且停当前页面不跳转。
+通过iframe src发送请求打开app自定义url scheme，如taobao://home（淘宝首页） 、etao://scan（一淘扫描）)；如果安装了客户端则会直接唤起，直接唤起后，之前浏览器窗口（或者扫码工具的webview）推入后台；如果在指定的时间内客户端没有被唤起，则js重定向到app下载地址。需要注意的是
+如果是android chrome 25版本以后，在iframe src不会发送请求，原因如下[android chrome google](https://developers.google.com/chrome/mobile/docs/intents) ，通过location href使用intent机制拉起客户端可行并且停当前页面不跳转。
 
 
 ### 参考资源
-#### https://developers.google.com/chrome/mobile/docs/intents
-#### 无线事业部smartBanner
-#### 韩国电商 http://m.daum.net/ 搜索框后面的一批h5不支持但native支持的功能（语音输入、扫描功能等）
-
+* https://developers.google.com/chrome/mobile/docs/intents
+* [无线事业部smartBanner](http://a.tbcdn.cn/g/mtb/lib-smartbanner/0.1.3/smartbanner.debug.js)
+* 韩国电商 http://m.daum.net/ 搜索框后面的一批h5不支持但native支持的功能（语音输入、扫描功能等）
+* [jquery smartBanner](https://github.com/jasny/jquery.smartbanner/blob/master/jquery.smartbanner.js)
 

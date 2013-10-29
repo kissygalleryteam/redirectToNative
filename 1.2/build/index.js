@@ -7,8 +7,10 @@ gallery/redirectToNative/1.2/index
 /**
  * @fileoverview 
  * @author miaojing <miaojing@taobao.com>
- * @module redirectToNative 移动页面或中间跳转页面使用 不依赖任何kissy模块 这里只依赖Event
+ * @module redirectToNative 移动页面中间跳转页面使用,打开native app，没安装则引导去下载app,不依赖任何kissy模块
+ * @ps 线上运行数月至今，目前测试发现魅族手机无法识别etao://item 怀疑手机系统不支持，具体原因客户端开发排查目前无果，这种情况可在跳转页面添加文本再次引导用户
  **/
+
 KISSY.add('gallery/redirectToNative/1.2/index',function (S, Event) {
     /**
      * @class RedirectToNative
@@ -42,7 +44,7 @@ KISSY.add('gallery/redirectToNative/1.2/index',function (S, Event) {
                     self.openTime = tar.getAttribute('data-android-open-time') || 3000;
                     self.package = tar.getAttribute('data-package') || 'com.taobao.taobao';
                 }
-                //只有android下的chrome要用intent协议唤起native
+                //只有android下的chrome要用intent机制唤起native
                 if (self.platform != 'ios' && !!navigator.userAgent.match(/Chrome/i)) {
                     self._hackChrome();
                 } else {
