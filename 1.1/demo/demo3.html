@@ -3,24 +3,42 @@
 <head>
     <meta charset="utf-8"/>
     <title>redirectToNative的demo</title>
+    <style>
+    * {font-size: 100px; color: #333;}
+    a { color: blue; }
+    </style>
 </head>
 <body>
 <script>
 /**
  * @fileoverview 
  * @author miaojing<miaojing@taobao.com>
- * @module redirectToNative 移动页面或中间跳转页面使用 原生实现，不依赖任何kissy模块
+ * @module redirectToNative 移动页面或中间跳转页面使用 不依赖任何kissy模块
  **/
-
     var RedirectToNative = {
-    	init: function(config) {
-			if(!config) return;
+        init: function(cfg) {
             var self = this;
                 self.platform = self._UA();
             // pc下 什么都不处理  
-            if(!self.platform) return;
-            self.installUrl = self.platform == 'ios' ? config.iosInstallUrl : config.androidInstallUrl;
-            self.nativeUrl = self.platform == 'ios' ? config.iosNativeUrl : config.andriodNativeUrl;
+            if (!self.platform) return;
+            if (self.platform == 'ios') { 
+              return;
+            }
+            var config = cfg || {
+                    iosInstallUrl: '',
+                    androidInstallUrl: '',
+                    iosNativeUrl: '',
+                    andriodNativeUrl: ''
+                };
+            if (self.platform == 'ios') {
+              self.installUrl = config.iosInstallUrl;
+              self.nativeUrl = config.iosNativeUrl;
+              self.laterTime = 800;
+            } else {
+              self.installUrl = config.androidInstallUrl;
+              self.nativeUrl = config.andriodNativeUrl;
+              self.laterTime = 3000;
+            }
             self._gotoNative();
         },
         /**
@@ -52,7 +70,7 @@
                  * 测试时间设置小于800ms时，在android下的UC浏览器会打开native app时并下载apk，
                  * 测试android+UC下打开native的时间最好大于800ms;
                  */
-            }, 1000);
+            }, self.laterTime);
         },
         /**
          * [_gotoInstall 去下载]
@@ -62,7 +80,7 @@
         _gotoInstall: function(startTime) {
             var self = this;
             var endTime = Date.now();
-            if (endTime - startTime < 1300) {
+            if (endTime - startTime < self.laterTime + 500) {
                 window.location = self.installUrl;
             }
         },
@@ -82,20 +100,18 @@
             }
         }
     };
-
-
-// 根据实际需求，配置下这四个参数即可，当然上面的逻辑您也可以大改特改:),正式使用时还是压缩下哈 http://ganquan.info/yui/?hl=zh-CN
-//透传参数
+  //透传参数
 var searchStr = location.search,
-	iosNativeUrl = 'etao://item' + searchStr,
+    iosNativeUrl = 'etao://item' + searchStr,
     andriodNativeUrl = 'etao://item' + searchStr;
 
 RedirectToNative.init({
-	iosInstallUrl: 'https://itunes.apple.com/cn/app/yi-tao-xiang-gou-wu-xian-yi-tao/id451400917?mt=8',
-	androidInstallUrl: 'http://download.taobaocdn.com/freedom/20457/andriod/701234etaoandroid2.4.9.apk',
-	iosNativeUrl: iosNativeUrl,
-	andriodNativeUrl: andriodNativeUrl
+    iosInstallUrl: 'https://itunes.apple.com/cn/app/yi-tao-xiang-gou-wu-xian-yi-tao/id451400917?mt=8',
+    androidInstallUrl: 'http://download.taobaocdn.com/wireless/etao4android/1.6.0/600000@etao_android_3.0.7.apk',
+    iosNativeUrl: iosNativeUrl,
+    andriodNativeUrl: andriodNativeUrl
 });
+
 </script>
 </body>
 </html>
